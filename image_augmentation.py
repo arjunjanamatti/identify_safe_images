@@ -14,12 +14,13 @@ datagen = ImageDataGenerator(
 # main_directory = 'C:/Users/Arjun Janamatti/Documents/image_classification/nude_sexy_safe_v1_x320/training/'
 
 class ImageAugment:
-    def __init__(self, main_directory):
+    def __init__(self, main_directory, num_images_to_augment):
         self.main_directory = main_directory
         self.dict_1 = {}
         self.sub_dir = os.listdir(self.main_directory)
+        self.num_images_to_augment = num_images_to_augment
 
-    def make_direcotires(self):
+    def make_directories(self):
         for sub in self.sub_dir:
             self.dict_1[sub] = len(os.listdir(self.main_directory + sub))
             print(sub, len(os.listdir(self.main_directory + sub)))
@@ -29,6 +30,27 @@ class ImageAugment:
         except Exception as e:
             pass
 
+    def get_file_name(self):
+        images_list = []
+        for sub in dict_1:
+            images_list.append(os.listdir(main_directory + sub))
+
+        name_index = list(dict_1.keys())
+        flat_image_name = []
+        flat_image_label = []
+        for index, i in enumerate(images_list):
+            for indes_i, j in enumerate(i):
+                if indes_i < self.num_images_to_augment:
+                    flat_image_name.append(name_index[index] + '/' + j)
+                    flat_image_label.append(name_index[index])
+
+        self.sexy_image_name = [file for file in flat_image_name
+                           if 'sexy' in file.split('/')]
+        self.nude_image_name = [file for file in flat_image_name
+                           if 'nude' in file.split('/')]
+        self.safe_image_name = [file for file in flat_image_name
+                           if 'safe' in file.split('/')]
+        pass
 
     pass
 
