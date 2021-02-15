@@ -52,6 +52,30 @@ class ImageAugment:
                            if 'safe' in file.split('/')]
         pass
 
+    def augment_images(self,list_name, folder_name):
+        for image in list_name:
+            try:
+                # Loading a sample image
+                img = load_img(self.main_directory + image)
+                # Converting the input sample image to an array
+                x = img_to_array(img)
+                # Reshaping the input image
+                x = x.reshape((1,) + x.shape)
+
+                # Generating and saving 5 augmented samples
+                # using the above defined parameters.
+                i = 0
+                unique_code = ((image.split('/')[-1]).split('.')[0]).split('-')[-1]
+                for batch in datagen.flow(x, batch_size=1,
+                                          save_to_dir=self.main_directory + folder_name + '_aug',
+                                          save_prefix='{}_aug_image'.format(folder_name + '_' + unique_code),
+                                          save_format='jpeg'):
+                    i += 1
+                    #                 print(((image.split('/')[-1]).split('.')[0]).split('-')[-1])
+                    if i > 5:
+                        break
+            except Exception as e:
+                pass
     pass
 
 main_directory = 'C:/Users/Arjun Janamatti/Documents/image_classification/nude_sexy_safe_v1_x320/training/'
