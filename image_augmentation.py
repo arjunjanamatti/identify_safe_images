@@ -32,10 +32,10 @@ class ImageAugment:
 
     def get_file_name(self):
         images_list = []
-        for sub in dict_1:
-            images_list.append(os.listdir(main_directory + sub))
+        for sub in self.dict_1:
+            images_list.append(os.listdir(self.main_directory + sub))
 
-        name_index = list(dict_1.keys())
+        name_index = list(self.dict_1.keys())
         flat_image_name = []
         flat_image_label = []
         for index, i in enumerate(images_list):
