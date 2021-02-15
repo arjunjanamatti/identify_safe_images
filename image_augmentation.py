@@ -18,7 +18,17 @@ class ImageAugment:
         self.main_directory = main_directory
         self.dict_1 = {}
         self.sub_dir = os.listdir(self.main_directory)
-        
+
+    def make_direcotires(self):
+        for sub in self.sub_dir:
+            self.dict_1[sub] = len(os.listdir(self.main_directory + sub))
+            print(sub, len(os.listdir(self.main_directory + sub)))
+        try:
+            for sub in self.dict_1:
+                os.mkdir(self.main_directory + sub + '_aug')
+        except Exception as e:
+            pass
+
 
     pass
 
