@@ -11,6 +11,17 @@ datagen = ImageDataGenerator(
         horizontal_flip = True,
         brightness_range = (0.5, 1.5))
 
+# main_directory = 'C:/Users/Arjun Janamatti/Documents/image_classification/nude_sexy_safe_v1_x320/training/'
+
+class ImageAugment:
+    def __init__(self, main_directory):
+        self.main_directory = main_directory
+        self.dict_1 = {}
+        self.sub_dir = os.listdir(self.main_directory)
+        
+
+    pass
+
 main_directory = 'C:/Users/Arjun Janamatti/Documents/image_classification/nude_sexy_safe_v1_x320/training/'
 dict_1 = {}
 sub_dir = os.listdir(main_directory)
